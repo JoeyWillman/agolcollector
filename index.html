@@ -27,8 +27,8 @@
     <div id="viewDiv"></div>
 
     <script>
-        require(["esri/config", "esri/Map", "esri/views/MapView", "esri/widgets/Locate", "esri/widgets/Search"], 
-        (Config, Map, MapView, Locate, Search) => {
+        require(["esri/config", "esri/Map", "esri/views/MapView", "esri/widgets/Locate", "esri/widgets/Search","esri/layers/FeatureLayer"], 
+        (Config, Map, MapView, Locate, Search, FeatureLayer) => {
             Config.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurNNKOxZzGksmd9odtipfMrCKhlUL7auZpitHz5p7XawaMdGKgRj-ybuRoJSAruPYpDWR-xjlL7q9anX9RZTFi6okxC69vm5audoPUqPT0sW7pjDTbgRcCVVAXRgKb9D5H5zaPA-oqQHbW2uiKh62goj2P4dQaxFDXvd9fQndw_bQlfySRneTGOnFPmVwB9_RvZ5JnpllUQuKIwpIQdpgELv53GTcQB4NvHv5Kl6GAd44AT1_iYlozOde";
 
             const map = new Map({
@@ -46,6 +46,15 @@
             const locateBtn = new Locate({
                 view: view
             });
+
+            // Create featurelayer from feature service 
+            const layer = new FeatureLayer({ 
+            // URL to the service 
+                url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/survey123_9cbf00261f424f4784eb3d4aec9c67ca_results/FeatureServer"
+
+            });
+
+            map.add(layer);
 
             // Add the locate widget to the top-left corner
             view.ui.add(locateBtn, {
